@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>תיכון ושטחים: תרגול בבית</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f7fb; --grid:#dbe6f1; --card:#ffffff; --ink:#1d2b4f; --muted:#5d6b87;
+  --acc:#2457c5; --hl1:#ffd84d; --hl2:#8fe0c1; --ok:#1f7a4d; --bad:#c0392b; --line:#c9d6e6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#141a26; --grid:#1e2738; --card:#1b2232; --ink:#e6ecf7; --muted:#9aa8c2;
+    --acc:#7aa5ff; --hl1:#b8962a; --hl2:#2f8f6c; --ok:#5fd09a; --bad:#ff7d6e; --line:#2c3850;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif; color:var(--ink);
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px; line-height:1.6;
+}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.65rem;font-weight:800;margin:6px 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+.theorem{background:var(--card);border-right:6px solid var(--acc);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.theorem summary{cursor:pointer;font-weight:600}
+.theorem p{margin:8px 0 0}
+.score{position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0;color:var(--muted);font-size:.95rem}
+.score b{color:var(--ink)}
+.card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 2px 0 var(--line);margin-bottom:18px}
+.num{font-weight:800;color:var(--acc);font-size:1.05rem;margin-bottom:4px}
+.fig{display:flex;justify-content:center;margin:4px 0 10px}
+.fig svg{width:100%;max-width:430px;height:auto}
+.q{font-size:1.12rem;margin:6px 0 14px}
+.m{font-family:"Heebo",Arial,sans-serif;white-space:nowrap;unicode-bidi:isolate}
+.ansrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.fld{display:flex;align-items:center;gap:6px}
+input{font:inherit;font-size:1.1rem;padding:8px 12px;border:1.5px solid var(--line);border-radius:8px;width:160px;background:var(--paper);color:var(--ink);direction:ltr;text-align:center}
+input.good{border-color:var(--ok)} input.badi{border-color:var(--bad)}
+.btn{font:inherit;font-weight:600;padding:8px 16px;border-radius:8px;border:none;background:var(--acc);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc)}
+.btn:focus-visible,input:focus-visible{outline:3px solid var(--hl1);outline-offset:2px}
+.fb{min-height:1.6em;margin:12px 0 6px;font-weight:600}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.sol{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--paper);border:1.5px dashed var(--line);overflow-x:auto}
+.sol b{color:var(--acc)}
+.again{text-align:center;margin-top:8px}
+svg .ol{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+svg .sg{stroke:var(--ink);stroke-width:1.6}
+svg .dash{stroke-dasharray:6 4;stroke:var(--muted)}
+svg .tk{stroke:var(--acc);stroke-width:2}
+svg .f1{fill:var(--hl1);opacity:.6}
+svg .f2{fill:var(--hl2);opacity:.6}
+svg .pt{fill:var(--ink)}
+svg .lb{font:700 16px "Heebo",Arial,sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:middle}
+svg .tx{font:700 13px "Heebo",Arial,sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:middle}
+svg .ra{fill:none;stroke:var(--ink);stroke-width:1.3}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>תיכון ושטחים: תרגול בבית</h1>
+  <p class="sub">תרגול המשפט: תיכון מחלק משולש לשני משולשים שווי שטח</p>
+
+  <details class="theorem">
+    <summary>המשפט וההוכחה</summary>
+    <p><b>משפט:</b> במשולש ABC, אם AD תיכון לצלע BC (כלומר BD = DC), אז <span class="m" dir="ltr">S△ABD = S△ACD = ½·S△ABC</span>.</p>
+    <p><b>הוכחה:</b> נוריד גובה AH לישר BC. זהו גובה משותף לשני המשולשים, ולכן
+      <span class="m" dir="ltr">S△ABD = BD·AH/2</span> ו־<span class="m" dir="ltr">S△ACD = DC·AH/2</span>. מכיוון ש־BD = DC, השטחים שווים.</p>
+    <p><b>משפט הפוך:</b> אם D על BC ו־<span class="m" dir="ltr">S△ABD = S△ACD</span>, אז D אמצע BC.</p>
+  </details>
+
+  <div class="score">
+    <span>נכון בניסיון ראשון: <b id="ok">0</b> מתוך <b id="tot">0</b></span>
+  </div>
+  <div id="list"></div>
+  <div class="again"><button class="btn" id="again">תרגילים חדשים עם מספרים אחרים</button></div>
+</div>
+
+<script>
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+const M=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2];
+const L=(p,q,t)=>[p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t];
+const cen=(V,ns)=>[ns.reduce((s,n)=>s+V[n][0],0)/ns.length, ns.reduce((s,n)=>s+V[n][1],0)/ns.length];
+const m=s=>`<span class="m" dir="ltr">${s}</span>`;
+const S=n=>m('S△'+n);
+const tri=(ax)=>({A:[ax??R(95,245),30],B:[30,228],C:[310,228]});
+const at=(V,ns,t)=>({p:cen(V,ns),t});
+
+function tick(p,q,n){
+  const md=M(p,q),dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy),ux=dx/l,uy=dy/l,nx=-uy,ny=ux;
+  let s='';
+  for(let i=0;i<n;i++){
+    const off=(i-(n-1)/2)*5,c=[md[0]+ux*off,md[1]+uy*off];
+    s+=`<line class="tk" x1="${c[0]-nx*6}" y1="${c[1]-ny*6}" x2="${c[0]+nx*6}" y2="${c[1]+ny*6}"/>`;
+  }
+  return s;
+}
+const pts=(V,ns)=>ns.map(n=>V[n].join(',')).join(' ');
+
+function draw(V,o={}){
+  const out=o.outline||['A','B','C'], c=cen(V,out);
+  let s=`<svg viewBox="0 0 340 262" direction="ltr" xmlns="http://www.w3.org/2000/svg">`;
+  (o.fills||[]).forEach(([ns,k])=>s+=`<polygon class="f${k}" points="${pts(V,ns)}"/>`);
+  s+=`<polygon class="ol" points="${pts(V,out)}"/>`;
+  (o.segs||[]).forEach(([a,b,d])=>s+=`<line class="sg${d?' dash':''}" x1="${V[a][0]}" y1="${V[a][1]}" x2="${V[b][0]}" y2="${V[b][1]}"/>`);
+  (o.ticks||[]).forEach(([a,b,n])=>s+=tick(V[a],V[b],n));
+  if(o.right){const h=V[o.right];s+=`<polyline class="ra" points="${h[0]+9},${h[1]} ${h[0]+9},${h[1]-9} ${h[0]},${h[1]-9}"/>`;}
+  (o.texts||[]).forEach(t=>s+=`<text class="tx" x="${t.p[0]}" y="${t.p[1]}">${t.t}</text>`);
+  const show=o.show||Object.keys(V);
+  show.forEach(n=>{
+    const p=V[n];let d;
+    if(o.off&&o.off[n]) d=o.off[n];
+    else{const vx=p[0]-c[0],vy=p[1]-c[1],l=Math.hypot(vx,vy)||1;d=[vx/l*16,vy/l*16];}
+    s+=`<circle class="pt" cx="${p[0]}" cy="${p[1]}" r="2.8"/><text class="lb" x="${p[0]+d[0]}" y="${p[1]+d[1]}">${n}</text>`;
+  });
+  return s+'</svg>';
+}
+
+/* ---------- תרגילים ---------- */
+
+function g_half(v){
+  v=v??R(0,3);const k=R(4,45);
+  const cfg=[
+    {V:()=>{const V=tri();V.D=M(V.B,V.C);return V},med:'AD',side:'BC',seg:['A','D'],tk:[['B','D',1],['D','C',1]],t1:['A','B','D'],t2:['A','D','C'],n1:'ABD',n2:'ADC',T:2*k},
+    {V:()=>{const V=tri();V.E=M(V.A,V.C);return V},med:'BE',side:'AC',seg:['B','E'],tk:[['A','E',1],['E','C',1]],t1:['A','B','E'],t2:['C','B','E'],n1:'ABE',n2:'CBE',T:2*k},
+    {V:()=>{const V=tri();V.F=M(V.A,V.B);return V},med:'CF',side:'AB',seg:['C','F'],tk:[['A','F',1],['F','B',1]],t1:['A','C','F'],t2:['B','C','F'],n1:'ACF',n2:'BCF',T:2*k},
+    {V:()=>{const V={K:[R(95,245),30],L:[30,228],M:[310,228]};V.N=M(V.K,V.L);return V},med:'MN',side:'KL',tri:'KLM',out:['K','L','M'],seg:['M','N'],tk:[['K','N',1],['N','L',1]],t1:['K','M','N'],t2:['L','M','N'],n1:'KMN',n2:'LMN',T:2*k+1}
+  ][v];
+  const V=cfg.V(),T=cfg.T,h=T/2,tn=cfg.tri||'ABC';
+  return {type:'num',ans:[h,h],labels:['S△'+cfg.n1,'S△'+cfg.n2],
+    q:`שטח המשולש ${tn} הוא ${T} סמ״ר. ${cfg.med} הוא תיכון לצלע ${cfg.side}. מצאו את השטחים של שני המשולשים שהתיכון יוצר.`,
+    svg:draw(V,{outline:cfg.out,segs:[cfg.seg],ticks:cfg.tk,fills:[[cfg.t1,1],[cfg.t2,2]],texts:[at(V,cfg.t1,'?'),at(V,cfg.t2,'?')]}),
+    sol:`התיכון ${cfg.med} מחלק את המשולש ${tn} לשני משולשים שווי שטח, ולכן כל אחד מהם הוא <b>חצי</b> משטח המשולש הגדול:<br>${m(`S△${cfg.n1} = S△${cfg.n2} = ${T} / 2 = ${h}`)} סמ״ר.`};
+}
+
+function g_rev(){
+  const V=tri();V.D=M(V.B,V.C);const k=R(4,45);
+  return {type:'num',ans:2*k,
+    q:`AD הוא תיכון במשולש ABC. ידוע ש־${m(`S△ADC = ${k}`)} סמ״ר. מצאו את ${S('ABC')}.`,
+    svg:draw(V,{segs:[['A','D']],fills:[[['A','D','C'],2]],ticks:[['B','D',1],['D','C',1]],texts:[at(V,['A','D','C'],k)]}),
+    sol:`תיכון מחלק משולש לשני משולשים שווי שטח ⇐ ${m(`S△ABD = S△ADC = ${k}`)}.<br>${m(`S△ABC = ${k} + ${k} = ${2*k}`)} סמ״ר.`};
+}
+
+function g_nested(v){
+  const V=tri();V.D=M(V.B,V.C);const k=R(2,20),T=4*k;v=v??R(0,2);
+  if(v<2){
+    V.E=M(V.A,V.C);
+    const base={segs:[['A','D'],['D','E']],ticks:[['B','D',1],['D','C',1],['A','E',2],['E','C',2]],fills:[[['D','E','C'],1]]};
+    const sol=`AD תיכון במשולש ABC ⇐ ${m(`S△ADC = ½·S△ABC`)}.<br>E אמצע AC ⇐ DE תיכון במשולש ADC ⇐ ${m(`S△DEC = ½·S△ADC = ¼·S△ABC`)}.`;
+    if(v===0) return {type:'num',ans:k,q:`במשולש ABC, D אמצע BC ו־E אמצע AC. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את ${S('DEC')}.`,
+      svg:draw(V,{...base,texts:[at(V,['D','E','C'],'?')]}),sol:sol+`<br>${m(`S△DEC = ${T} / 4 = ${k}`)} סמ״ר.`};
+    return {type:'num',ans:T,q:`במשולש ABC, D אמצע BC ו־E אמצע AC. ידוע ש־${m(`S△DEC = ${k}`)} סמ״ר. מצאו את ${S('ABC')}.`,
+      svg:draw(V,{...base,texts:[at(V,['D','E','C'],k)]}),sol:sol+`<br>${m(`S△ABC = 4·${k} = ${T}`)} סמ״ר.`};
+  }
+  V.E=M(V.A,V.B);
+  return {type:'num',ans:3*k,
+    q:`במשולש ABC, D אמצע BC ו־E אמצע AB. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את שטח המרובע AEDC.`,
+    svg:draw(V,{segs:[['A','D'],['D','E']],ticks:[['B','D',1],['D','C',1],['A','E',2],['E','B',2]],fills:[[['A','E','D','C'],2]],texts:[at(V,['A','E','D','C'],'?')]}),
+    sol:`AD תיכון ⇐ ${m(`S△ABD = ${T}/2 = ${2*k}`)}.<br>DE תיכון במשולש ABD ⇐ ${m(`S△BED = ${2*k}/2 = ${k}`)}.<br>${m(`S(AEDC) = ${T} − ${k} = ${3*k}`)} סמ״ר.`};
+}
+
+function g_midmed(v){
+  const V=tri();V.D=M(V.B,V.C);V.E=M(V.A,V.D);const k=R(2,20),T=4*k;
+  const vs=[['BEC',2*k,['B','E','C']],['ABE',k,['A','B','E']],['AEC',k,['A','E','C']],['BED',k,['B','E','D']]];
+  const [nm,a,poly]=vs[v??R(0,3)];
+  return {type:'num',ans:a,
+    q:`AD תיכון במשולש ABC, ו־E אמצע התיכון AD. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את ${S(nm)}.`,
+    svg:draw(V,{segs:[['A','D'],['B','E'],['C','E']],ticks:[['B','D',1],['D','C',1],['A','E',2],['E','D',2]],fills:[[poly,1]],texts:[at(V,poly,'?')],off:{E:[16,-4]}}),
+    sol:`AD תיכון ⇐ ${m(`S△ABD = S△ADC = ${2*k}`)}.<br>E אמצע AD ⇐ BE תיכון במשולש ABD ⇐ ${m(`S△ABE = S△BED = ${k}`)}.<br>CE תיכון במשולש ADC ⇐ ${m(`S△AEC = S△CED = ${k}`)}.<br>${m(`S△BEC = S△BED + S△CED = ${2*k}`)}.<br>לכן ${m(`S△${nm} = ${a}`)} סמ״ר.`};
+}
+
+function g_chain(v){
+  const V=tri(R(120,220));V.D=M(V.B,V.C);V.E=M(V.A,V.D);V.F=M(V.B,V.E);const k=R(1,12),T=8*k;v=v??R(0,1);
+  const segs=[['A','D'],['B','E'],['C','E'],v?['D','F']:['C','F']];
+  const poly=v?['B','F','D']:['B','F','C'],nm=v?'BFD':'BFC',a=v?k:2*k;
+  return {type:'num',ans:a,
+    q:`במשולש ABC: D אמצע BC, E אמצע AD, ו־F אמצע BE. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את ${S(nm)}.`,
+    svg:draw(V,{segs,ticks:[['B','D',1],['D','C',1],['A','E',2],['E','D',2],['B','F',3],['F','E',3]],fills:[[poly,1]],texts:[at(V,poly,'?')],off:{E:[16,-4],F:[-4,-15]}}),
+    sol:`AD תיכון ⇐ ${m(`S△ABD = S△ADC = ${4*k}`)}.<br>BE תיכון ב־ABD ⇐ ${m(`S△BED = ${2*k}`)}; CE תיכון ב־ADC ⇐ ${m(`S△CED = ${2*k}`)}, ולכן ${m(`S△BEC = ${4*k}`)}.<br>`+
+      (v?`F אמצע BE ⇐ DF תיכון במשולש BED ⇐ ${m(`S△BFD = ${2*k}/2 = ${k}`)} סמ״ר.`
+        :`F אמצע BE ⇐ CF תיכון במשולש BEC ⇐ ${m(`S△BFC = ${4*k}/2 = ${2*k}`)} סמ״ר.`)};
+}
+
+function g_centroid(v){
+  const V=tri(R(120,220));V.D=M(V.B,V.C);V.E=M(V.A,V.C);V.F=M(V.A,V.B);V.G=cen(V,['A','B','C']);
+  const k=R(2,15),T=6*k;
+  const base={segs:[['A','D'],['B','E'],['C','F']],ticks:[['B','D',1],['D','C',1],['C','E',2],['E','A',2],['A','F',3],['F','B',3]],off:{G:[15,8]}};
+  const why=`נסמן ${m('x = S△GBD')}. GD תיכון במשולש GBC ⇐ ${m('S△GDC = x')}. באותו אופן ${m('S△GCE = S△GEA = y')} ו־${m('S△GAF = S△GFB = z')}.<br>AD תיכון ב־ABC ⇐ ${m('2z + x = x + 2y')} ⇐ z = y. באותו אופן (BE תיכון) x = z.<br>לכן שלושת התיכונים מחלקים את המשולש ל־<b>6 משולשים שווי שטח</b>, כל אחד ${m('S△ABC / 6')}.<br>`;
+  const vs=[
+    ()=>({ans:k,q:`AD, BE ו־CF הם תיכונים במשולש ABC, הנחתכים בנקודה G. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את ${S('BGD')}.`,poly:['B','G','D'],txt:'?',end:`${m(`S△BGD = ${T}/6 = ${k}`)} סמ״ר.`}),
+    ()=>({ans:2*k,q:`AD, BE ו־CF הם תיכונים במשולש ABC, הנחתכים בנקודה G. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את ${S('AGB')}.`,poly:['A','G','B'],txt:'?',end:`המשולש AGB מורכב משניים מהם: ${m(`S△AGB = 2·${k} = ${2*k}`)} סמ״ר.`}),
+    ()=>({ans:2*k,q:`AD, BE ו־CF הם תיכונים במשולש ABC, הנחתכים בנקודה G. שטח המשולש ABC הוא ${T} סמ״ר. מצאו את שטח המרובע GDCE.`,poly:['G','D','C','E'],txt:'?',end:`המרובע GDCE מורכב משני משולשים קטנים: ${m(`S = 2·${k} = ${2*k}`)} סמ״ר.`}),
+    ()=>({ans:T,q:`AD, BE ו־CF הם תיכונים במשולש ABC, הנחתכים בנקודה G. ידוע ש־${m(`S△GDC = ${k}`)} סמ״ר. מצאו את ${S('ABC')}.`,poly:['G','D','C'],txt:k,end:`${m(`S△ABC = 6·${k} = ${T}`)} סמ״ר.`})
+  ];
+  const c=vs[v??R(0,vs.length-1)]();
+  return {type:'num',ans:c.ans,q:c.q,svg:draw(V,{...base,fills:[[c.poly,1]],texts:[at(V,c.poly,c.txt)]}),sol:why+c.end};
+}
+
+function g_point(v){
+  const V=tri(R(110,230));V.D=M(V.B,V.C);V.P=L(V.A,V.D,R(35,65)/100);
+  const base={segs:[['A','D'],['B','P'],['C','P']],ticks:[['B','D',1],['D','C',1]],off:{P:[15,-2]}};
+  const proof=`AD תיכון ב־ABC ⇐ ${m('S△ABD = S△ACD')}.<br>PD תיכון במשולש PBC ⇐ ${m('S△PBD = S△PCD')}.<br>נחסר: ${m('S△ABD − S△PBD = S△ACD − S△PCD')} ⇐ ${m('S△ABP = S△ACP')}.<br>`;
+  if((v??R(0,1))===0){
+    const k=R(3,30);
+    return {type:'num',ans:k,q:`AD תיכון במשולש ABC, והנקודה P נמצאת על התיכון AD. ידוע ש־${m(`S△ABP = ${k}`)} סמ״ר. מצאו את ${S('ACP')}.`,
+      svg:draw(V,{...base,fills:[[['A','B','P'],1],[['A','C','P'],2]],texts:[at(V,['A','B','P'],k),at(V,['A','C','P'],'?')]}),
+      sol:proof+`לכן ${m(`S△ACP = ${k}`)} סמ״ר.`};
+  }
+  const k=R(3,20),t=R(4,30),T=t+2*k;
+  return {type:'num',ans:k,q:`AD תיכון במשולש ABC, והנקודה P על AD. שטח המשולש ABC הוא ${T} סמ״ר ושטח המשולש PBC הוא ${t} סמ״ר. מצאו את ${S('ABP')}.`,
+    svg:draw(V,{...base,fills:[[['P','B','C'],2],[['A','B','P'],1]],texts:[at(V,['P','B','C'],t),at(V,['A','B','P'],'?')]}),
+    sol:proof+`${m(`S△ABP + S△ACP = ${T} − ${t} = ${2*k}`)} ⇐ ${m(`S△ABP = ${k}`)} סמ״ר.`};
+}
+
+const fx=(a,b)=>b===0?`${a}x`:`${a}x ${b>0?'+':'−'} ${Math.abs(b)}`;
+function g_alg(v){
+  const V=tri(R(120,220));V.D=M(V.B,V.C);
+  const x=R(2,9),a=R(2,6),c=a+R(1,4),b=R(1,20),d=a*x+b-c*x,val=a*x+b,askX=v??R(0,1);
+  const e1=fx(a,b),e2=fx(c,d);
+  return {type:'num',ans:askX?x:2*val,
+    q:`AD תיכון במשולש ABC. ${m(`S△ABD = ${e1}`)}, ו־${m(`S△ADC = ${e2}`)}. ${askX?'מצאו את x.':'מצאו את שטח המשולש ABC.'}`,
+    svg:draw(V,{segs:[['A','D']],ticks:[['B','D',1],['D','C',1]],fills:[[['A','B','D'],1],[['A','D','C'],2]],texts:[at(V,['A','B','D'],e1),at(V,['A','D','C'],e2)]}),
+    sol:`תיכון מחלק משולש לשני משולשים שווי שטח, לכן:<br>${m(`${e1} = ${e2}`)}<br>${m(`${c-a}x = ${b-d}`)} ⇐ ${m(`x = ${x}`)}.`+
+      (askX?'':`<br>${m(`S△ABD = ${a}·${x} ${b>=0?'+':'−'} ${Math.abs(b)} = ${val}`)} ⇐ ${m(`S△ABC = 2·${val} = ${2*val}`)} סמ״ר.`)};
+}
+
+function g_height(v){
+  const V=tri(pick([R(85,130),R(210,255)]));V.D=M(V.B,V.C);V.H=[V.A[0],228];
+  let mm=R(3,12),h=R(3,14);if((mm*h)%2)h++;const A1=mm*h/2;
+  const o={segs:[['A','D'],['A','H',1]],ticks:[['B','D',1],['D','C',1]],right:'H',fills:[[['A','B','D'],1]],off:{H:[0,16],D:[0,16]}};
+  if((v??R(0,1))===0) return {type:'num',ans:h,
+    q:`AD תיכון במשולש ABC, ו־AH גובה לצלע BC. אורך BC הוא ${2*mm} ס״מ ו־${m(`S△ABD = ${A1}`)} סמ״ר. מצאו את אורך הגובה AH.`,
+    svg:draw(V,{...o,texts:[at(V,['A','B','D'],A1)]}),
+    sol:`AD תיכון ⇐ ${m(`BD = ${2*mm}/2 = ${mm}`)}.<br>AH הוא גם הגובה של המשולש ABD לצלע BD:<br>${m(`${A1} = ${mm}·AH / 2`)} ⇐ ${m(`AH = ${2*A1}/${mm} = ${h}`)} ס״מ.`};
+  return {type:'num',ans:2*mm,
+    q:`AD תיכון במשולש ABC, ו־AH גובה לצלע BC שאורכו ${h} ס״מ. ידוע ש־${m(`S△ADC = ${A1}`)} סמ״ר. מצאו את אורך הצלע BC.`,
+    svg:draw(V,{...o,fills:[[['A','D','C'],2]],texts:[at(V,['A','D','C'],A1)]}),
+    sol:`${m(`S△ADC = DC·AH / 2`)} ⇐ ${m(`${A1} = DC·${h}/2`)} ⇐ ${m(`DC = ${mm}`)}.<br>AD תיכון ⇐ ${m(`BC = 2·DC = ${2*mm}`)} ס״מ.`};
+}
+
+function g_para(v){
+  const s=R(10,60),V={A:[60+s,40],B:[30,220],C:[250,220],D:[280+s,40]};V.O=M(V.A,V.C);
+  const k=R(3,25),T=4*k;
+  const base={outline:['A','B','C','D'],segs:[['A','C'],['B','D']],ticks:[['A','O',1],['O','C',1],['B','O',2],['O','D',2]],off:{O:[0,-15]}};
+  const proof=`אלכסוני מקבילית חוצים זה את זה ⇐ O אמצע AC ואמצע BD.<br>BO תיכון במשולש ABC ⇐ ${m('S△AOB = S△BOC')}; CO תיכון במשולש BCD ⇐ ${m('S△BOC = S△COD')}; DO תיכון במשולש ACD ⇐ ${m('S△COD = S△AOD')}.<br>לכן האלכסונים מחלקים את המקבילית ל־<b>4 משולשים שווי שטח</b>.<br>`;
+  const vs=[
+    ()=>({ans:k,q:`ABCD מקבילית ששטחה ${T} סמ״ר. האלכסונים נחתכים בנקודה O. מצאו את ${S('AOB')}.`,poly:['A','O','B'],txt:'?',end:`${m(`S△AOB = ${T}/4 = ${k}`)} סמ״ר.`}),
+    ()=>({ans:T,q:`ABCD מקבילית, ואלכסוניה נחתכים בנקודה O. ידוע ש־${m(`S△BOC = ${k}`)} סמ״ר. מצאו את שטח המקבילית.`,poly:['B','O','C'],txt:k,end:`${m(`S(ABCD) = 4·${k} = ${T}`)} סמ״ר.`}),
+    ()=>({ans:2*k,q:`ABCD מקבילית ששטחה ${T} סמ״ר, ו־O מפגש האלכסונים. מצאו את ${S('ABD')}.`,poly:['A','B','D'],txt:'?',end:`${m(`S△ABD = 2·${k} = ${2*k}`)} סמ״ר (האלכסון מחלק את המקבילית לשני חצאים שווים).`})
+  ];
+  const c=vs[v??R(0,vs.length-1)]();
+  return {type:'num',ans:c.ans,q:c.q,svg:draw(V,{...base,fills:[[c.poly,1]],texts:[at(V,c.poly,c.txt)]}),sol:proof+c.end};
+}
+
+/* ---------- רשימת התרגילים לבית ---------- */
+const ALL=[];
+const P=(g,v)=>ALL.push([g,v]);
+P(g_half,1);P(g_half,3);P(g_rev);
+P(g_nested,1);P(g_midmed,1);P(g_midmed,3);P(g_chain,1);
+P(g_centroid,1);P(g_centroid,3);P(g_point,1);
+P(g_alg,1);P(g_height,1);
+P(g_para,1);
+
+/* ---------- ממשק ---------- */
+const $=id=>document.getElementById(id);
+let okCount=0;
+const parse=s=>{s=s.trim().replace(',','.');if(s==='')return NaN;return s.includes('/')?s.split('/').reduce((a,b)=>Number(a)/Number(b)):Number(s);};
+
+function card(q,n){
+  const el=document.createElement('div');el.className='card';
+  let counted=false;
+  const score=ok=>{if(counted)return;counted=true;if(ok){okCount++;$('ok').textContent=okCount;}};
+  const ans=Array.isArray(q.ans)?q.ans:[q.ans],labels=q.labels||[null];
+  let h=`<div class="num">תרגיל ${n}</div>`;
+  if(q.svg) h+=`<div class="fig">${q.svg}</div>`;
+  h+=`<div class="q">${q.q}</div>`;
+  h+=`<div class="ansrow">${ans.map((_,i)=>`<label class="fld">${labels[i]?m(labels[i]+' ='):''}<input class="ain" inputmode="decimal" autocomplete="off" placeholder="תשובה" aria-label="${labels[i]||'תשובה'}"></label>`).join('')}<button class="btn chk">בדיקה</button></div>`;
+  h+=`<div class="fb" aria-live="polite"></div>
+      <div class="row"><button class="btn ghost solBtn">הצגת פתרון</button></div>
+      <div class="sol" hidden><b>פתרון:</b><br>${q.sol}</div>`;
+  el.innerHTML=h;
+  const fb=el.querySelector('.fb'),sol=el.querySelector('.sol');
+  el.querySelector('.solBtn').onclick=()=>{score(false);sol.hidden=false;};
+  const ins=[...el.querySelectorAll('.ain')];
+  const check=()=>{
+    const vals=ins.map(x=>parse(x.value));
+    if(vals.some(isNaN)){fb.className='fb no';fb.textContent=ins.length>1?'מלאו את כל התשובות במספרים (אפשר גם שבר, למשל 3/4).':'הקלידו מספר (אפשר גם שבר, למשל 3/4).';return;}
+    const oks=vals.map((v,i)=>Math.abs(v-ans[i])<0.01);
+    ins.forEach((x,i)=>{x.classList.toggle('good',oks[i]);x.classList.toggle('badi',!oks[i]);});
+    const ok=oks.every(Boolean);score(ok);
+    fb.className='fb '+(ok?'ok':'no');
+    fb.textContent=ok?'נכון!':(ins.length>1&&oks.some(Boolean)?'חלק מהתשובות נכונות. תקנו את המסומנות באדום.':'לא מדויק. נסו שוב, או לחצו על ״הצגת פתרון״.');
+    if(ok) sol.hidden=false;
+  };
+  el.querySelector('.chk').onclick=check;
+  ins.forEach(x=>x.onkeydown=e=>{if(e.key==='Enter')check();});
+  return el;
+}
+
+function build(){
+  okCount=0;$('ok').textContent=0;$('tot').textContent=ALL.length;
+  const list=$('list');list.innerHTML='';
+  ALL.forEach(([g,v],i)=>list.appendChild(card(g(v),i+1)));
+}
+$('again').onclick=()=>{build();window.scrollTo({top:0,behavior:'smooth'});};
+build();
+</script>
+</body>
+</html>
